@@ -1,0 +1,8 @@
+*.img
+*.rom
+*.iso
+*.bin
+*.qcow2
+.env
+*.cdr
+*.toast
