@@ -28,12 +28,6 @@ if [ ! -f "$SCRIPTPATH/pram_q800_712.img" ]; then
   /opt/local/bin/qemu-img create -f raw pram_q800_712.img 256b
 fi
 
-# check for Macintosh-Quadra-650-v71.cdr
-if [ ! -f "$SCRIPTPATH/Macintosh-Quadra-650-v71.cdr" ]; then
-  echo "Macintosh-Quadra-650-v71.cdr not found"
-  exit 1
-fi
-
 # check for quadra800_712.qcow2
 if [ ! -f "$SCRIPTPATH/quadra800_712.qcow2" ]; then
   echo "quadra800_712.qcow2 not found"
@@ -45,14 +39,14 @@ sudo /opt/local/bin/qemu-system-m68k \
   -M q800 \
   -m 64 \
   -bios "$SCRIPTPATH/Quadra_800.rom" \
-  -g 1152x870x8 \
   -drive file=pram_q800_712.img,format=raw,if=mtd \
   -device scsi-hd,scsi-id=0,drive=hd0 \
   -drive "file=$SCRIPTPATH/quadra800_712.qcow2,media=disk,format=qcow2,if=none,id=hd0" \
-  -device scsi-cd,scsi-id=3,drive=cd0 \
-  -drive "file=$SCRIPTPATH/SuperDuo.iso,media=cdrom,if=none,id=cd0" \
-  -nic vmnet-bridged,model=dp83932,mac=08:00:07:12:34:56,ifname=en0 \
-  -audio driver=none
+  -nic vmnet-bridged,model=dp83932,mac=08:00:07:12:34:56,ifname=vlan0 \
+  -audio none
                                                                                                                                                                                                                                                                                                                                                                                   #   -nic vmnet-bridged,model=dp83932,mac=08:00:07:A2:A2:A2,ifname=en0
 
 exit 0
+
+#  -device scsi-cd,scsi-id=3,drive=cd0 \
+#  -drive "file=$SCRIPTPATH/SuperDuo.iso,media=cdrom,if=none,id=cd0" \
