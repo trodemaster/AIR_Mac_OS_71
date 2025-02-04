@@ -6,3 +6,4 @@
 .env
 *.cdr
 *.toast
+.DS_Store
