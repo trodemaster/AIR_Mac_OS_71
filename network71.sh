@@ -39,8 +39,6 @@ sudo /opt/local/bin/qemu-system-m68k \
   -M q800 \
   -m 64 \
   -bios "$SCRIPTPATH/Quadra_800.rom" \
-  -device nubus-virtio-mmio,romfile="$SCRIPTPATH/roms/declrom.older" \
-  -device virtio-tablet-device \
   -drive file=pram_q800_712.img,format=raw,if=mtd \
   -device scsi-hd,scsi-id=0,drive=hd0 \
   -drive "file=$SCRIPTPATH/quadra800_712.qcow2,media=disk,format=qcow2,if=none,id=hd0" \
